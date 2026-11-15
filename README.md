@@ -34,6 +34,23 @@ The login screen is prefilled. Just press **Sign in**. Any nonempty input works,
 - Results overview table and detailed results screens
 - Criteria charts, response distribution, sample anonymous student feedback, unavailable-results states
 
+## UI animations and micro-interactions (v2)
+
+The project now includes a lightweight **CSS motion system** in `styles.css`, with a small route-change hook in `app.js`. There is **no React, Tailwind, Bootstrap, npm, or external CDN** to configure. It works as before by opening `index.html`, with Live Server, or on GitHub Pages.
+
+Effects added:
+- Soft page entrances and staggered dashboard cards when navigating
+- Buttons lift on hover and compress slightly on click
+- Teacher/facility cards, tables, side navigation and filter tabs react to hover
+- 1–5 evaluation ratings have quick selection feedback
+- Progress bars and staff dashboard bars animate on page navigation
+- Confirmation dialogs use a fade/scale entrance; success indicators pop
+- Toast messages slide in gently
+- Input focus is visually clearer
+- **Accessibility:** `prefers-reduced-motion` disables these animations automatically
+
+All sample data, workflows, GitHub Pages compatibility, and localStorage behavior remain unchanged. You can adjust motion duration in the `--motion-*` variables at the end of `styles.css`.
+
 ## Important: no backend
 
 All students, staff names, statistics, questions, status labels and responses are **illustrative static demo data** taken from the supplied UI designs. Login doesn't verify identity. Password reset doesn't email anyone. Submission doesn't send data to the school. The staff release toggles change the displayed mock UI (including the student dashboard), not any real school system. The source design does not include questionnaire screens for class advisers or general staff, so the prototype shows a descriptive placeholder if they are released.

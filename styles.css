@@ -399,3 +399,114 @@ h1, h2, h3 { font-weight: 700; color: var(--navy-ink); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0s !important; animation-duration: 0s !important; }
 }
+
+
+/* =============================================================
+   EduTrack Motion System — HCI micro-interactions (v2)
+   Pure CSS; no build step, third-party library or network needed.
+   Motion is optional and respects prefers-reduced-motion.
+   ============================================================= */
+:root {
+  --motion-fast: 160ms;
+  --motion-normal: 260ms;
+  --motion-slow: 480ms;
+  --motion-ease: cubic-bezier(.22, 1, .36, 1);
+  --motion-shadow: 0 15px 35px rgba(16, 50, 86, .11);
+}
+/* The route-enter class is only placed on actual route transitions.
+   Filtering/typing/rating won't replay the full-page entrance. */
+.route-enter .student-main > *,
+.route-enter .staff-main > *,
+.route-enter .login-stack,
+.route-enter .login-brand-inner {
+  animation: edu-page-in .42s var(--motion-ease) both;
+}
+.route-enter .student-main > :nth-child(2),
+.route-enter .staff-main > :nth-child(2) { animation-delay: 55ms; }
+.route-enter .student-main > :nth-child(3),
+.route-enter .staff-main > :nth-child(3) { animation-delay: 100ms; }
+.route-enter .student-main > :nth-child(4),
+.route-enter .staff-main > :nth-child(4) { animation-delay: 135ms; }
+.route-enter .module-card,
+.route-enter .metric-card,
+.route-enter .feedback-grid > *,
+.route-enter .result-grid > * {
+  animation: edu-card-in .5s var(--motion-ease) both;
+}
+.route-enter .module-card:nth-child(2),
+.route-enter .metric-card:nth-child(2),
+.route-enter .feedback-grid > :nth-child(2) { animation-delay: 65ms; }
+.route-enter .module-card:nth-child(3),
+.route-enter .metric-card:nth-child(3),
+.route-enter .feedback-grid > :nth-child(3) { animation-delay: 110ms; }
+.route-enter .module-card:nth-child(4) { animation-delay: 155ms; }
+@keyframes edu-page-in { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes edu-card-in { from { opacity:0; transform:translateY(15px) scale(.985); } to { opacity:1; transform:translateY(0) scale(1); } }
+@keyframes edu-progress-in { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+@keyframes edu-bar-in { from { transform:scaleY(.03); } to { transform:scaleY(1); } }
+@keyframes edu-backdrop-in { from { opacity:0; } to { opacity:1; } }
+@keyframes edu-modal-in { from { opacity:0; transform:translateY(14px) scale(.96); } to { opacity:1; transform:translateY(0) scale(1); } }
+@keyframes edu-toast-in { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+@keyframes edu-check-pop { 0% { transform:scale(.5) rotate(-12deg); } 70% {transform:scale(1.14) rotate(3deg);} 100% {transform:scale(1) rotate(0);} }
+@keyframes edu-rating-pop { 0% { transform:scale(.88); } 65% {transform:scale(1.12);} 100% { transform:scale(1); } }
+
+/* Soft elevation and button tactility without altering Figma colors */
+.btn {
+  position:relative;
+  transition: transform var(--motion-fast) ease, background var(--motion-fast) ease,
+     box-shadow var(--motion-normal) ease, border-color var(--motion-fast) ease;
+}
+.btn:not(:disabled):not(.btn-disabled):hover { transform:translateY(-2px); box-shadow:0 6px 16px rgba(18,53,89,.12); }
+.btn:not(:disabled):active { transform:translateY(0) scale(.975); box-shadow:none; }
+.module-card.active, .metric-card, .panel, .auth-card {
+  transition: box-shadow var(--motion-normal) ease, border-color var(--motion-normal) ease;
+}
+.module-card.active:hover { box-shadow:var(--motion-shadow); border-color:#d5b348; }
+.metric-card:hover, .panel.score-card:hover { box-shadow:var(--motion-shadow); }
+.filter-tab, .side-nav-link, .rating-button {
+  transition: transform var(--motion-fast) ease, background var(--motion-fast) ease,
+    border-color var(--motion-fast) ease, box-shadow var(--motion-normal) ease;
+}
+.filter-tab:not(.selected):hover { transform:translateY(-1px); }
+.side-nav-link:hover { transform:translateX(3px); }
+.rating-button:hover { transform:translateY(-3px); box-shadow:0 5px 12px rgba(24,65,103,.1); }
+.rating-button:active { transform:scale(.93); }
+.rating-button.picked { animation: edu-rating-pop .28s var(--motion-ease); }
+.data-table tbody tr { transition: background var(--motion-fast) ease; }
+.data-table tbody tr:hover { background:#f8fbff; }
+.text-field, .search-field input, textarea {
+  transition: border-color var(--motion-fast) ease, box-shadow var(--motion-fast) ease;
+}
+.text-field:focus, .search-field input:focus, textarea:focus {
+  border-color:#6796c3;
+  box-shadow:0 0 0 3px rgba(52,116,178,.1);
+}
+/* Animate actual progress values on navigation only */
+.route-enter .progress-fill { transform-origin:left center; animation:edu-progress-in .72s var(--motion-ease) both; }
+.route-enter .chart-bar { transform-origin:bottom center; animation:edu-bar-in .8s var(--motion-ease) both; }
+.route-enter .chart-bars > :nth-child(2) .chart-bar { animation-delay:60ms; }
+.route-enter .chart-bars > :nth-child(3) .chart-bar { animation-delay:120ms; }
+.route-enter .chart-bars > :nth-child(4) .chart-bar { animation-delay:180ms; }
+.route-enter .chart-bars > :nth-child(5) .chart-bar { animation-delay:240ms; }
+.route-enter .chart-bars > :nth-child(6) .chart-bar { animation-delay:300ms; }
+.route-enter .chart-bars > :nth-child(7) .chart-bar { animation-delay:360ms; }
+.modal-overlay { animation:edu-backdrop-in .18s ease both; backdrop-filter:blur(3px); }
+.modal-card { animation:edu-modal-in .32s var(--motion-ease) both; }
+.success-check { animation:edu-check-pop .48s var(--motion-ease) .12s both; }
+.toast { animation:edu-toast-in .3s var(--motion-ease) both; }
+/* Accessible keyboard focus stays visible; hover-only movement never required. */
+@media (hover:none) {
+  .btn:not(:disabled):not(.btn-disabled):hover, .filter-tab:not(.selected):hover,
+  .rating-button:hover, .side-nav-link:hover { transform:none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .route-enter *, .route-enter *::before, .route-enter *::after,
+  .modal-overlay, .modal-card, .success-check, .toast, .rating-button.picked {
+    animation:none !important;
+  }
+  .btn, .module-card, .metric-card, .panel, .filter-tab, .side-nav-link,
+  .rating-button, .data-table tbody tr, .text-field, .search-field input, textarea {
+    transition:none !important;
+  }
+  .btn:hover, .filter-tab:hover, .rating-button:hover, .side-nav-link:hover { transform:none !important; }
+}

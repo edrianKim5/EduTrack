@@ -81,6 +81,7 @@
     } catch (_) { /* reset corrupt demo state */ }
     return freshState();
   }
+  let previousRenderedPath = null;
   let data = loadState();
   let ui = { filter: 'all', search: '', modal: null, passwordVisible: false, recoverSent: false, mobileMenu: false };
   const app = document.getElementById('app');
@@ -347,7 +348,10 @@
     else if(path==='/staff/results') content=resultsOverview();
     else if(path.startsWith('/staff/results/')) content=resultDetails(path.split('/')[3]);
     else content=notFound();
+    const isNewRoute = path !== previousRenderedPath;
     app.innerHTML=content+modalHtml();
+    app.classList.toggle('route-enter', isNewRoute);
+    previousRenderedPath = path;
     document.title=`EduTrack — ${path.includes('/staff')?'Staff':'Student'} Portal`;
     if(ui.modal) { const first=app.querySelector('.modal-card button'); first?.focus(); }
   }
