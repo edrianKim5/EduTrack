@@ -3,7 +3,18 @@ import {useState} from 'react';
 import {STAFF_NAME,STUDENT_NAME,STUDENT_LRN} from '../data/mockData';
 import {useDemo} from '../context/DemoContext';
 
-export function Brand({large=false}){return <div className={`brand ${large?'brand-large':''}`}><img src={`${import.meta.env.BASE_URL}assets/lagonoy-logo.png`} alt="Lagonoy High School seal"/><div><strong>EduTrack</strong><small>{large?'Lagonoy High School':'LAGONOY HIGH SCHOOL · EVALUATION SYSTEM'}</small></div></div>}
+const ASSET_ROOT=import.meta.env.BASE_URL;
+export function SchoolIdentity({compact=false}) {
+  return <div className={`school-identity ${compact?'school-identity-compact':''}`}>
+    <img src={`${ASSET_ROOT}assets/lagonoy-logo.png`} alt="Lagonoy High School Inc. seal" />
+    <span>Lagonoy High School Inc</span>
+  </div>;
+}
+export function Brand({large=false}) {
+  if (large) return <img className="edutrack-wordmark" src={`${ASSET_ROOT}assets/edutrack-wordmark.png`} alt="EduTrack" />;
+  return <div className="brand"><img src={`${ASSET_ROOT}assets/lagonoy-logo.png`} alt="Lagonoy High School seal"/><div><strong>EduTrack</strong><small>LAGONOY HIGH SCHOOL · EVALUATION SYSTEM</small></div></div>;
+}
+
 export function Badge({children,tone='muted'}){return <span className={`badge badge-${tone}`}>{children}</span>}
 export function Notice({children,orange=false}){return <div className={`info-strip ${orange?'info-orange':'info-blue'}`}>{children}</div>}
 export function Progress({value}){return <div className="progress-track"><div className="progress-fill" style={{width:`${Math.max(0,Math.min(100,value))}%`}}/></div>}

@@ -7,6 +7,7 @@ import Auth from './pages/Auth';
 import {StudentDashboard,EvaluationList,EvaluationWizard,EvaluationResponse,UnpublishedModule} from './pages/Student';
 import {StaffDashboard,SurveyManager,ResultsOverview,ResultDetails} from './pages/Staff';
 import './styles/main.css';
+import './styles/theme-2026.css';
 
 function App(){return <><Routes>
   <Route path="/" element={<Navigate to="/login/student" replace/>}/>

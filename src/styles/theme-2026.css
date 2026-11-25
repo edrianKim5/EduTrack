@@ -1,0 +1,205 @@
+/* EduTrack — revised Figma theme (November 2026)
+   Layout and interaction logic remain in main.css and React components.
+   This file defines the updated visual layer so it can be maintained separately. */
+:root {
+  --navy: #113d6d;
+  --navy-dark: #0f2c4c;
+  --navy-ink: #153f6b;
+  --gold: #102b49;
+  --gold-hover: #1b486f;
+  --gold-soft: #eef3f8;
+  --bg: #f3f6fc;
+  --blue-soft: #e8f1fe;
+  --border: #e7edf3;
+  --shadow: 0 2px 8px rgba(20, 47, 75, .025);
+}
+body {background:var(--bg);color:#223b54;}
+h1,h2,h3 {color:var(--navy-ink);}
+.btn {border-radius:9px;letter-spacing:0;}
+.btn-primary {background:var(--navy-dark);border-color:var(--navy-dark);color:#fff;}
+.btn-primary:hover {background:#1b476e;border-color:#1b476e;}
+.btn-outline {background:#f0f4f8;border-color:#f0f4f8;color:var(--navy-ink);}
+.btn-outline:hover {background:#e5edf4;border-color:#e5edf4;}
+.btn-white {background:#f1f5fa;border-color:#f1f5fa;color:var(--navy-ink);}
+.btn-white:hover {background:#e8eef5;}
+.btn-disabled,.btn:disabled {background:#e9edf3;border-color:#e9edf3;color:#a1abb8;}
+.panel {border-color:transparent;box-shadow:var(--shadow);border-radius:19px;}
+.progress-fill {background:var(--navy-dark);}
+.progress-track {background:#e9edf3;}
+.badge-cream {background:#eef3f7;color:#45627c;}
+.badge-amber {background:#fff0e2;color:#8a5c25;}
+.badge-blue {background:#e9f2ff;color:#285e91;}
+.badge-success {background:#e2f6ed;color:#296f52;}
+.info-strip {border-radius:11px;background:#e9f2fe;color:#214f80;}
+.info-orange {background:#fff0e0;color:#815720;}
+/* School/EduTrack branding */
+.school-identity {display:flex;align-items:center;gap:9px;font-size:20px;font-weight:700;color:#183b64;line-height:1.1;}
+.school-identity img {width:70px;height:70px;object-fit:contain;}
+.edutrack-wordmark {display:block;width:min(100%,390px);height:auto;object-fit:contain;}
+.brand {color:var(--navy-ink);}
+.brand strong {color:var(--navy-ink);}
+.brand small {color:#647d96;}
+.brand img {background:transparent;}
+/* Login/recovery: white information pane + deep blue form pane */
+.login-layout {grid-template-columns:minmax(0,1fr) minmax(0,1fr);background:white;}
+.login-brand {position:relative;background:white;color:#163b65;display:flex;align-items:center;justify-content:center;padding:145px 10% 65px;}
+.login-brand>.school-identity {position:absolute;top:32px;left:clamp(22px,4.5%,67px);}
+.login-brand-inner {max-width:530px;margin:0;width:100%;}
+.login-brand h1 {color:#133f70;font-size:clamp(37px,3.5vw,52px);line-height:1.13;margin:55px 0 24px;letter-spacing:-.02em;}
+.login-brand-inner>p {font-size:17px;line-height:1.65;color:#61738a;max-width:500px;margin-bottom:0;}
+.brand-message {margin-top:32px;background:#ecf3f9;border-radius:15px;padding:23px 25px;display:flex;flex-direction:column;gap:9px;}
+.brand-message strong {color:#163c64;font-size:16px;}
+.brand-message span {color:#657992;font-size:15px;}
+.brand-message.secondary-message {margin-top:18px;}
+.brand-foot {margin-top:35px;color:#72859b;font-size:13px;letter-spacing:.04em;}
+.login-content {background:var(--navy);padding:55px 28px;}
+.login-stack {width:min(430px,100%);}
+.auth-card {border:none;border-radius:21px;box-shadow:0 10px 28px rgba(6,25,47,.06);padding:37px 36px 38px;}
+.eyebrow {color:#62758b;letter-spacing:.14em;font-size:12px;font-weight:600;}
+.auth-card h2 {font-size:35px;margin-bottom:11px;}
+.auth-desc {font-size:16px;line-height:1.65;color:#78889a;margin-bottom:27px;}
+.role-tabs {background:#f0f4f9;border-radius:10px;padding:5px;margin-bottom:25px;}
+.role-tab {color:#72829a;border-color:transparent;border-radius:8px;padding:11px 12px;}
+.role-tab.active {background:#edf2f8;border-color:#123f6c;box-shadow:0 1px 5px rgba(17,52,84,.08);color:#193e66;}
+.field-label {font-size:14px;color:#273e55;}
+.text-field {border-radius:7px;background:#fff;border:1px solid #dce5ee;height:54px;}
+.forgot-row a {color:#153f6c;}
+.auth-submit {margin-top:28px;}
+.auth-help {color:#cbd7e3;font-size:13px;margin-top:25px;}
+.recovery-tip {display:grid;gap:5px;background:#edf4f9;color:#2a4d72;border-radius:9px;padding:15px 17px;margin:4px 0 27px;}
+.recovery-tip strong {font-size:14px;}
+.recovery-tip span {font-size:13px;color:#637d96;line-height:1.5;}
+.recovery-steps {margin-top:28px;color:#f8fbfe;}
+.recovery-steps>.eyebrow {color:#d4dfeb;margin-bottom:16px;}
+.recovery-steps-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;}
+.recovery-steps-grid>div {display:flex;flex-direction:column;align-items:flex-start;gap:8px;}
+.recovery-steps-grid b {background:white;color:#173f6a;padding:7px 10px;border-radius:8px;font-size:13px;}
+.recovery-steps-grid strong {font-size:14px;}
+.recovery-steps-grid span {font-size:12px;line-height:1.5;color:#bdccdd;}
+/* Student portal */
+.student-header {background:white;color:var(--navy-ink);box-shadow:0 2px 10px rgba(17,53,83,.035);}
+.header-inner {min-height:88px;}
+.profile-label strong {color:var(--navy-ink);}
+.profile-label small {color:#69849f;}
+.student-main {padding-top:34px;}
+.page-heading h1 {font-size:34px;}
+.page-heading p {color:#7e8fa1;}
+.module-grid {gap:27px;}
+.module-card {border-radius:21px;border:1px solid transparent;box-shadow:none;min-height:280px;padding:29px;}
+.module-card.active:first-child {border:1px solid transparent;padding:29px;}
+.module-card.active:hover {border-color:#cfdae4;box-shadow:0 10px 28px rgba(15,47,75,.08);}
+.module-card.disabled {background:#edf1f5;}
+.module-card h2 {margin-top:22px;}
+.module-card.disabled h2 {color:#8190a0;}
+.module-card .module-meta {margin-bottom:15px;}
+.module-card .btn {min-height:48px;}
+.summary-panel {padding:29px 30px;}
+.search-field input {height:57px;border-color:transparent;border-radius:11px;box-shadow:none;}
+.filter-tab {border-radius:26px;background:#fff;color:var(--navy-ink);border-color:#eef1f5;}
+.filter-tab.selected {background:#edf3f8;border-color:#193e66;box-shadow:none;}
+.filter-tab:hover {background:#edf3f8;}
+.data-table th {background:#edf3fa;color:#7b8a9c;border-bottom-color:#e7edf3;}
+.data-table tbody tr:hover {background:#f7fafd;}
+.data-table td {border-bottom-color:#e7ebf1;}
+.table-btn {min-width:155px;}
+.wizard-progress {padding:27px 28px;}
+.wizard-body {padding:28px;}
+.rating-legend {background:#eef3f8;color:#364e65;border-radius:12px;}
+.rating-legend span {color:#76899b;}
+.rating-button {border-color:#dce5ee;}
+.rating-button:hover {background:#edf4fa;border-color:var(--navy-ink);}
+.rating-button.picked {background:var(--navy-dark);color:#fff;border-color:var(--navy-dark);box-shadow:0 1px 6px rgba(15,47,75,.15);}
+.comment-input {border-radius:11px;}
+.response-comment {border-radius:12px;background:#f1f5fa;}
+/* Staff portal: white navigation next to navy canvas */
+.staff-app {background:var(--navy);}
+.staff-sidebar {background:#fff;color:var(--navy-ink);padding:24px 15px;box-shadow:none;}
+.sidebar-brand {color:var(--navy-ink);font-size:24px;}
+.sidebar-brand img {background:transparent;}
+.side-nav {gap:12px;margin-top:54px;}
+.side-nav-link {color:#294d71;border-radius:8px;border-left:4px solid transparent;}
+.side-nav-link:hover {background:#edf3fa;}
+.side-nav-link.current {color:var(--navy-ink);background:#edf3f9;border-left-color:var(--navy-dark);}
+.sidebar-bottom {background:#edf3f9;color:var(--navy-ink);padding:19px 12px 4px;}
+.sidebar-account strong {color:#244c74;}
+.sidebar-account span {color:#778b9f;}
+.sidebar-bottom .btn {background:#fff;border-color:#fff;color:var(--navy-ink);}
+.staff-content {background:var(--navy);}
+.staff-main {padding-top:30px;}
+.staff-heading {background:white;border-radius:18px;padding:25px 27px;margin-bottom:25px;}
+.staff-heading h1 {margin-bottom:7px;}
+.staff-heading p {color:#8293a6;}
+.staff-crumb {color:#2c5580;margin-bottom:8px;}
+.metrics-grid {gap:22px;margin-bottom:25px;}
+.metric-card {box-shadow:none;min-height:150px;padding:25px 25px;}
+.metric-card p {color:#8293a4;}
+.metric-card strong {color:#244f7b;}
+.metric-card small {color:#8596a9;}
+.staff-dashboard-grid {gap:23px;}
+.staff-dashboard-grid>.panel {padding:26px;}
+.chart-bar {background:var(--navy-dark);border-radius:4px 4px 0 0;}
+.attention-panel {border-color:transparent;}
+.attention-item {background:#eff4f9;border-radius:12px;}
+.attention-item a {color:#234f7a;}
+.staff-table th,.results-table th {background:#edf3fa;}
+.staff-main>.info-strip {background:#e8f1f9;color:#315c87;border-radius:13px;}
+.feedback-quote {border-radius:12px;background:#eff4fa;}
+.score-row .progress-fill,.distribution-row .progress-fill,.watch-item .progress-fill {background:var(--navy-dark);}
+/* Feedback, dialogs, accessibility */
+.modal-overlay {background:rgba(13,42,73,.54);}
+.modal-card {border-radius:18px;padding:35px;}
+.success-check {background:var(--navy-dark);color:white;}
+.receipt {background:#f0f4f9;}
+.toast {background:#102e4f;}
+.toast-tick {color:#b5e0c3;}
+.module-card.active:hover {border-color:#ccdcea;}
+button:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible {outline-color:#70a8e0;}
+/* Layout overrides for the new theme */
+@media (max-width:1100px) {
+ .login-brand {padding:120px 6% 45px;}
+ .login-brand>.school-identity {top:23px;left:23px;}
+ .login-brand h1 {font-size:39px;margin-top:42px;}
+ .brand-message {padding:19px;}
+}
+@media (max-width:760px) {
+ .login-layout {grid-template-columns:1fr;}
+ .login-brand {padding:110px 25px 30px;align-items:flex-start;}
+ .login-brand>.school-identity {top:19px;left:23px;}
+ .school-identity img {width:51px;height:51px;}
+ .school-identity span {font-size:17px;}
+ .login-brand-inner {max-width:520px;margin:auto;}
+ .edutrack-wordmark {width:260px;}
+ .login-brand h1 {font-size:32px;margin:22px 0 13px;}
+ .login-brand-inner>p {font-size:15px;}
+ .brand-message {display:flex;margin-top:17px;padding:17px 19px;}
+ .brand-message.secondary-message {margin-top:12px;}
+ .brand-foot {display:block;margin-top:23px;font-size:11px;}
+ .login-content {padding:28px 18px 45px;}
+ .login-stack {width:min(480px,100%);}
+ .auth-card {padding:27px 24px;}
+ .student-header .brand img {width:37px;height:37px;}
+ .student-header .brand strong {font-size:20px;}
+ .module-card {padding:22px;min-height:235px;}
+ .module-card.active:first-child {padding:22px;}
+ .staff-mobile-top {background:white;color:var(--navy-ink);}
+ .staff-mobile-top .menu-toggle,.staff-mobile-top .small-signout {color:var(--navy-ink);}
+ .staff-sidebar {background:white;}
+ .staff-main {padding:22px 15px 44px;}
+ .staff-heading {padding:21px;}
+ .metrics-grid {grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;}
+ .metric-card {padding:15px 11px;min-height:123px;}
+ .metric-card strong {font-size:24px;}
+ .modal-card {padding:25px;}
+}
+@media (max-width:420px) {
+ .recovery-steps-grid {gap:8px;}
+ .recovery-steps-grid strong {font-size:12px;}
+ .recovery-steps-grid span {font-size:11px;}
+ .header-profile {gap:6px;}
+ .student-header .profile-label strong {font-size:11px;}
+ .student-header .profile-label small {font-size:9px;}
+ .brand-message strong {font-size:15px;}
+}
+@media (prefers-reduced-motion:reduce) {
+ .btn,.panel,.module-card,.metric-card {transition:none!important;}
+}

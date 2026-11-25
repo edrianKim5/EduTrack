@@ -1,43 +1,50 @@
-# EduTrack — HCI Frontend
+# EduTrack — HCI Prototype
 
-A frontend-only student evaluation prototype for **Lagonoy High School**, based on our HCI Figma designs.
+Frontend-only evaluation portal for Lagonoy High School Inc., based on our updated 28-screen UI design. Built with **React + Vite**.
 
-## Run locally
+## Run in VS Code
 
-1. Open this folder in **VS Code**.
-2. Open the terminal and run:
+Requires Node.js 20.19+ or 22.12+.
 
-   ```bash
-   npm install
-   npm run dev
-   ```
+```bash
+npm install
+npm run dev
+```
 
-3. Open the local URL shown in the terminal (usually **http://localhost:5173**).
+Open the local address shown in the terminal (usually `http://localhost:5173`).
 
-## Demo
+## Explore the demo
 
-- Select **Student** or **Staff** on the sign-in screen.
-- The login fields are prefilled; click **Sign in**.
-- Student: rate teachers and facilities, save drafts, submit evaluations.
-- Staff: release or lock surveys, explore participation and results.
-- Drafts and survey changes are saved in your browser's `localStorage`.
+1. On the login page, select **Student** or **Staff**.
+2. Keep the prefilled login details and select **Sign in**.
+3. **Student:** open teacher/facility evaluations, choose ratings, save drafts and submit.
+4. **Staff:** view the dashboard, release/lock surveys and review results.
 
-**Note:** This is an HCI demo. Login, feedback, and results use sample data. There is no backend or real authentication.
+This is a UI prototype only. No backend or real authentication. Changes are saved in **this browser** using `localStorage`.
 
-## Project structure
+## Project files
 
-- `src/pages/` — student, staff, and login screens
-- `src/components/` — reusable UI components
+- `src/pages/` — login, student and staff screens
+- `src/components/` — shared UI elements
 - `src/context/` — demo state and browser storage
-- `src/data/` — mock records and questionnaires
-- `src/styles/` — visual design and animations
-- `public/assets/` — school logo
+- `src/data/` — sample teachers, facilities and questions
+- `src/styles/` — layouts, animations and updated theme
+- `public/assets/` — school seal and EduTrack wordmark
 
-## Build
+## Publish changes to GitHub
+
+```bash
+git add .
+git commit -m "Apply updated EduTrack UI design"
+git push
+```
+
+For GitHub Pages: **Settings → Pages → Source: GitHub Actions**. The included workflow deploys the Vite build after each push to `main`.
+
+## Production build
 
 ```bash
 npm run build
-npm run preview
 ```
 
-The production files are generated in `dist/`. **GitHub Pages:** Push this folder to the `main` branch, then open **Repository Settings → Pages → Build and deployment → GitHub Actions**. The included workflow builds and publishes the `dist/` folder automatically. The site uses hash-based routing so reloading internal pages works on GitHub Pages.
+Built files appear in `dist/`.
